@@ -1,0 +1,329 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt,a4paper,twocolumn]{article}
+\usepackage[twocolumn]{geometry}
+
+
+% Page dimension
+\hoffset = -11.0mm
+\voffset = -11.0mm
+\topmargin = 0mm
+\textheight = 680pt
+\textwidth = 168mm
+\columnsep = 6mm
+
+% See geometry.pdf to learn the layout options. There are lots.
+% \usepackage{geometry}				       
+
+% ... or a4paper or a5paper or ... 
+% \geometry{letterpaper}
+
+% Activate for for rotated page geometry
+%\geometry{landscape} 					     
+
+% Activate to begin paragraphs with an empty line rather than an indent
+%\usepackage[parfill]{parskip}
+
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setromanfont[Mapping=tex-text]{Hoefler Text}
+%\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+\setmainfont[Scale=1.0]{TH SarabunPSK} 
+\XeTeXlinebreaklocale 'th_TH'
+
+
+% add a dot after the section number
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+\makeatletter
+\renewcommand*{\@seccntformat}[1]{\csname the#1\endcsname\hspace{1em}}
+\makeatother
+
+% \titleformat*{\section}{\Large\bfseries}
+% \titleformat*{\subsection}{\Large}
+% \titleformat*{\subsubsection}{\Large}
+% \titleformat*{\paragraph}{\large\bfseries}
+% \titleformat*{\subparagraph}{\large\bfseries}
+
+% Gantt chart package
+% \usepackage{pgfgantt}
+
+% Enumerated list with square brackets
+\usepackage{enumitem}				
+
+% Paragraph indent and break
+\usepackage{indentfirst}				    
+
+% It prevents placing floats before the section
+\usepackage[section]{placeins}			
+
+% One half spacing
+\usepackage{setspace}               
+\onehalfspacing
+
+% Paragraph indentation
+\setlength{\parindent}{1.27cm}
+
+% \linespread{1.3}
+\setlength{\parskip}{1pt plus 1pt minus 1pt}
+% \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+
+% \newenvironment{packed_enum}{
+% \begin{enumerate}
+%   \setlength{\itemsep}{1pt}
+%   \setlength{\parskip}{-10ex}
+%   \setlength{\parsep}{0pt}
+% }{\end{enumerate}}
+
+
+% Change caption name of figures, table, abstract 
+\renewcommand\figurename{รูปที่}
+\renewcommand\tablename{ตารางที่}
+\renewcommand\abstractname{บทคัดย่อ}
+\renewcommand{\refname}{เอกสารอ้างอิง}
+
+% How to force to center the table captions
+\usepackage[justification=centering]{caption}
+
+% http://ctan.org/pkg/amssymb, http://ctan.org/pkg/pifont
+\usepackage{amssymb}					
+\usepackage{pifont}						
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+
+% Font size of the document title
+\usepackage{etoolbox}       
+\makeatletter
+\patchcmd{\@maketitle}{\LARGE}{\bf\Large}{}{}
+\makeatother
+
+% \title{ระบบสมาชิกที่ใช้เทคโนโลยีเอ็นเอฟซีสำหรับแอนดรอยด์สมาร์ตโฟน\\กรณีศึกษา: ระบบร้านอาหาร\\an NFC Based Membership System for Android Smartphone,\\Case Study for Restaurant System}
+\title{ระบบสมาชิกที่ใช้เทคโนโลยีเอ็นเอฟซีสำหรับแอนดรอยด์สมาร์ตโฟน กรณีศึกษา: ระบบร้านอาหาร\\An NFC Based Membership System for Android Smartphone,\\Case Study for Restaurant System}
+\author{}
+\date{}
+
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+%----------------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\begin{abstract}
+%\boldmath
+ในยุคของการแข่งขันทางธุรกิจ ร้านค้าต่าง ๆ มุ่งเน้นการทำบัตรสมาชิกเพื่อสร้างสัมพันธ์ที่ดีกับลูกค้า ปัญหาที่เกิดขึ้นคือลูกค้าจะต้องพกพาบัตรสมาชิกของร้านค้าต่าง ๆ เป็นจำนวนมากซึ่งไม่อำนวยความสะดวกในการพกพา อีกทั้งยังเป็นภาระของต้นทุนที่ทุกร้านจะต้องจ่ายไปกับการทำบัตรสมาชิก จากปัญหาที่กล่าวมาข้างต้น โครงงานมหาบัณฑิตนี้นำเสนอต้นแบบของระบบสมาชิกโดยใช้การส่งข้อมูลแบบเพียร์ทูเพียร์ด้วยเทคโนโลยีเอ็นเอฟซีที่ผนวกเข้ากับสมาร์ตโฟน เพื่อลดต้นทุนการผลิตบัตรสมาชิกของทางร้านค้า และลดการพกพาบัตรสมาชิกของลูกค้า ความสามารถของระบบดังกล่าวจะถูกทดสอบกับกรณีศึกษาของระบบร้านอาหาร
+\end{abstract}
+
+\renewcommand\abstractname{Abstract}
+\begin{abstract}
+%\boldmath
+The abstract goes here.
+\end{abstract}
+
+\noindent \textbf{คำสำคัญ:} เอ็นเอฟซี, ระบบสมาชิก, เพียร์ทูเพียร์
+
+% \sffamily
+% \thefontsize\tiny
+% \thefontsize\scriptsize
+% \thefontsize\footnotesize
+% \thefontsize\small
+% \thefontsize\normalsize
+% \thefontsize\large
+% \thefontsize\Large
+% \thefontsize\LARGE
+% \thefontsize\huge
+% \thefontsize\Huge
+
+% \clearpage
+% \the\columnwidth
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+\section{บทนำ}
+เป็นที่ทราบกันในปัจจุบันนี้ว่า ร้านค้าส่วนใหญ่ต่างมุ่งไปที่ซีอาร์เอ็ม (Customer relationship management: CRM) หรือพัฒนาด้านการจัดการลูกค้าสัมพันธ์ โดยมุ่งเน้นนำเสนอสินค้าบริการที่สร้างความสุข ก่อให้เกิดความชื่นชอบในตัวสินค้า ใช้สินค้าอย่างสม่ำเสมอ บอกกันปากต่อปาก ก่อให้เกิดความภักดีในตราสินค้า และเกิดความผูกพันอย่างลึกซึ้งในตราสินค้า ธุรกิจหลากหลายรูปแบบไม่ว่าจะเป็น ภัตตาคาร ร้านอาหาร ห้างสรรพสินค้า สายการบิน โรงรูปยนตร์ และสถานบันเทิง ต่างมุ่งประเด็นใช้กลยุทธ์ต่าง ๆ เพื่อสร้างสัมพันธ์ที่ดีกับลูกค้า กลยุทธ์หนึ่งในนั้นคือ การทำบัตรสมาชิกเพื่อเพิ่มสิทธิประโยชน์หรือส่วนลดให้กับลูกค้า
+
+ข้อดีของการสมัครบัตรสมาชิกคือ ช่วยให้เข้าใจความต้องการ และการตอบสนองของลูกค้าในสินค้าหรือบริการ สามารถสร้างผลกําไรในธุรกิจอย่างมีประสิทธิรูป และสามารถดึงดูดลูกค้าให้กลับมาอีกครั้ง ด้วยเหตุนี้เองร้านค้าต่าง ๆ จึงมุ่งเน้นการทำบัตรสมาชิกเป็นจำนวนมาก แต่สิ่งที่ตามมากลับพบปัญหาว่ากลยุทธ์การทำตลาดดังกล่าวกลับไม่ได้ผลอย่างที่ควรจะเป็น อันเนื่องมาจากร้านค้าทุกร้านต่างก็ทำบัตรสมาชิกเป็นของตัวเอง จึงไม่เกิดความแตกต่างในข้อได้เปรียบหรือเสียเปรียบ อีกทั้งยังเป็นภาระของต้นทุนที่ทุกร้านจะต้องจ่ายไปกับการทำบัตรสมาชิก ปัญหาที่เกิดขึ้นไม่ได้ส่งผลกระทบต่อร้านค้าเพียงอย่างเดียว  ยังส่งผลกระทบต่อลูกค้าด้วย ลูกค้าจะต้องพกพาบัตรสมาชิกของร้านค้าต่าง ๆ เป็นจำนวนมากซึ่งไม่อำนวยความสะดวกในการพกพา
+
+จากปัญหาที่กล่าวมาข้างต้น ปัจจุบันเทคโนโลยีก้าวเข้ามามีส่วนในชีวิตประจำวันของเรามากขึ้น ในแต่ละปีที่ผ่านไปจะเห็นว่ามีคนที่ใช้อุปกรณ์พกพากันมากขึ้น ส่งผลให้จำนวนการเติบโตของอุปกรณ์พกพาที่สูงขึ้นมาก \cite{itm:shopping} ยิ่งไปกว่านั้นอุปกรณ์พกพาต่าง ๆ ได้ผนวกเข้ากับเทคโนโลยีสื่อสารไร้สาย ซึ่งจะช่วยรองรับการสื่อสารระหว่างเครื่องมืออิเล็กทรอนิกส์ในระยะใกล้ ๆ \cite{itm:rpp-mobile} ด้วยปัจจัยเหล่านี้เองถือเป็นโอกาสในการแปลงข้อมูลบัตรสมาชิกของแต่ละร้านค้าต่าง ๆ ลงบนอุปกรณ์พกพา 
+
+โครงงานมหาบัณฑิตนี้นำเสนอต้นแบบ (Prototype) ของระบบสมาชิกโดยใช้เทคโนโลยีเอ็นเอฟซี (Near Field Communication: NFC) ที่ผนวกเข้ากับสมาร์ตโฟน โดยจะมุ่งเน้นไปที่ความสามารถใช้งาน (Usability) และความสามารถเชิงฟังก์ชัน (Functionality) ของสมาร์ตโฟนให้สามารถทำหน้าที่แทนบัตรสมาชิกของร้านค้าต่าง ๆ ได้ โครงงานนี้มีจุดประสงค์เพื่อออกแบบและพัฒนาระบบดังกล่าว เพื่อลดการพกพาบัตรสมาชิกของลูกค้า ช่วยแก้ปัญหาในกรณีที่บัตรสมาชิกเกิดสูญหาย และลดต้นทุนการผลิตบัตรสมาชิกของทางร้านค้า อีกทั้งยังช่วยในการส่งเสริมการขายอีกด้วย โดยระบบต้นแบบดังกล่าวที่ถูกพัฒนาขึ้นจะใช้ระบบสมาชิกของร้านอาหารเป็นกรณีศึกษา
+
+%----------------------------------------------------------------------------------------
+
+\section{ทฤษฏีและงานวิจัยที่เกี่ยวข้อง}
+การวิเคราะห์และออกแบบระบบต้นแบบสำหรับการรวบรวมบัตรสมาชิกบนสมาร์ตโฟนที่ผนวกเข้ากับเทคโนโลยีเอ็นเอฟซี ผู้ทำโครงงานได้ศึกษาเรื่องที่เกี่ยวข้องเพื่อประกอบการทําโครงงานมหาบัณฑิต แบ่งเป็น ระบบปฏิบัติการแอนดรอยด์ (Android) เอสคิวไลท์ (SQLite) เทคโนโลยีเอ็นเอฟซี โปรแกรมประยุกต์แสตมป์ (Stamp) และโปรแกรมประยุกต์กอตอิต (Got it) ซึ่งสามารถจําแนกเป็นหลักการและทฤษฎีที่เกี่ยวข้อง ดังนี้
+
+\subsection{แอนดรอยด์}
+แอนดรอยด์เป็นระบบปฏิบัติการที่มีพื้นฐานอยู่บนระบบปฏิบัติการลินุกซ์ ถูกออกแบบมาสำหรับอุปกรณ์ที่ใช้จอสัมผัส เช่นสมาร์ตโฟน และแท็บเล็ตคอมพิวเตอร์ ถูกคิดค้นและพัฒนาโดยบริษัทแอนดรอยด์ (Android, Inc.) ซึ่งต่อมาบริษัทกูเกิล (Google, Inc.) ได้ทำการซื้อต่อบริษัทในปี พ.ศ. 2548 แอนดรอยด์ถูกเปิดตัวเมื่อ ปี พ.ศ. 2550 พร้อมกับการก่อตั้งโอเพนแฮนด์เซตอัลไลแอนซ์ ซึ่งเป็นกลุ่มของบริษัทผลิตฮาร์ดแวร์ ซอฟต์แวร์ และการสื่อสารคมนาคม ที่ร่วมมือกันสร้างมาตรฐานเปิด สำหรับอุปกรณ์พกพา โดยสมาร์ตโฟนที่ใช้ระบบปฏิบัติการแอนดรอยด์เครื่องแรกของโลกคือ เอชทีซี ดรีม วางจำหน่ายเมื่อปี พ.ศ. 2551
+
+\subsection{เอสคิวไลท์}
+เอสคิวไลท์เป็นระบบจัดการฐานข้อมูลเชิงสัมพันธ์ (Relational Database Management System: RDMS) บรรจุอยู่ในโปรแกรมขนาดเล็ก พัฒนาด้วยภาษาซี เป็นระบบฐานข้อมูลที่สามารถทำงานได้โดยไม่จำเป็นต้องพึ่งพาเซิร์ฟเวอร์ ซึ่งแตกต่างกับระบบฐานข้อมูลอื่น ๆ เหมาะกับแอปพลิเคชันที่สามารถทำงานได้ด้วยตัวเอง (Standalone) สามารถนำไปประยุกต์ใช้งานได้หลากหลาย เช่น ดิกชินนารี เว็บบราวเซอร์ แคตาล็อคสินค้า โปรแกรมแบบสอบถาม การเก็บข้อมูลที่ต้องการส่งเป็นไฟล์ข้อมูลผ่านทางเมล์หรือสมาร์ตโฟน เป็นต้น
+
+\subsection{เทคโนโลยีเอ็นเอฟซี}
+เทคโนโลยีเอ็นเอฟซีเป็นเทคโนโลยีสื่อสารไร้สายระยะใกล้ โดยใช้คลื่นวิทยุความถี่สูง รองรับการสื่อสารสองทางระหว่างเครื่องมืออิเล็กทรอนิกส์ในระยะประมาณ 1 - 4 ซม. (10 ซม. ในทางทฤษฎี) ที่ใช้ได้ดีกับโครงสร้างพื้นฐานแบบไร้สัมผัส เอ็นเอฟซีถูกพัฒนาขึ้นโดยบริษัท Sony และ NXP โดยใช้คลื่นความถี่ 13.56 MHz. รับส่งข้อมูลด้วยความเร็ว 424 Kbps บนพื้นฐานมาตรฐานไอเอสโอ/ไออีซี 18092 NFC IP-1 \cite{itm:prp-rfid} และไอเอสโอ/ไออีซี 14443 \cite{itm:cicc} (Philips MIFARE and Sony’s FeliCa) โดยมาตรฐานดังกล่าวได้เสนอโหมดการทำงานทั้งสามแบบ \cite{itm:IDA-Pay} ที่แตกต่างกันดังรูปที่ \cite{fig:nfc}
+
+\begin{enumerate}
+\item อ่าน/เขียน (Reader/Writer mode) โหมดนี้อุปกรณ์เอ็นเอฟซีสามารถทำตัวเสมือนเป็นเครื่องอ่านเขียน Contactless Smart Card หรือบางครั้งเรียกว่าแท็ก (Tag) โดยจะสามารถอ่านข้อมูลจากแท็กที่ติดอยู่ใน Smartposter หรือจุดให้บริการข้อมูลได้ ซึ่งโหมดดังกล่าวสอดคล้องกับมาตรฐานไอเอสโอ/ไออีซี 14443
+
+\item เอ็นเอฟซีการ์ดอีมูเลชั่น (NFC Card Emulation Mode) โหมดนี้จะทำงานเสมือนเป็นบัตร Contactless ซึ่งนั่นหมายความว่าอุปกรณ์สมาร์ตโฟนตามมาตรฐานเอ็นเอฟซีจะทำตัวเป็นบัตร Contactless Smart Card เพื่อใช้ในการทำธุรกรรมต่าง ๆ ได้
+
+\item เพียร์ทูเพียร์ (Peer-to-Peer Mode) โหมดนี้จะทำการแลกเปลี่ยนข้อมูลระหว่างอุปกรณ์เอ็นเอฟซีด้วยกันเช่นนามบัตร รูปถ่าย แฟ้มข้อมูลอื่น ๆ ซึ่งโหมดดังกล่าวสอดคล้องกับมาตรฐานไอเอสโอ/ไออีซี 18092
+\end{enumerate}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=81mm]{nfc_operating_modes.png}
+\caption{โหมดทำงานของเอ็นเอฟซีและมาตรฐาน} \label{fig:nfc}
+\label{overflow}
+\end{figure}
+
+ปัจจุบันบริษัททั้งสองได้ร่วมมือกับบริษัทผู้ผลิตและพัฒนาสมาร์ตโฟนจัดตั้งเป็น NFC Forum เพื่อให้เกิดการใช้งานในรูปแบบต่าง ๆ มากขึ้น ในระยะเริ่มแรกมีบริษัทชั้นนำของโลกประกาศนำเทคโนโลยีนี้มาใช้กับสมาร์ตโฟนแล้ว เช่น Nokia, Samsung, Motorola เป็นต้น
+
+\subsection{โปรแกรมประยุกต์แสตมป์}
+โปรแกรมประยุกต์แสตมป์ เป็นโปรแกรมสำหรับสะสมแต้มโดยทำงานร่วมกับฮาร์ดแวร์พิเศษ เมื่อลูกค้าซื้อสินค้าหรือบริการกับร้านค้าที่ร่วมรายการกับแสตมป์ ร้านค้าจะใช้ฮาร์ดแวร์ดังกล่าว ประทับตราลงบนหน้าจอสมาร์ตโฟนของลูกค้า ในการยืนยันสิทธิ์หรือสะสมแต้ม รูปที่ \ref{fig:stamp} แสดงฮาร์ดแวร์ที่ใช้งานร่วมกับโปรแกรม วัตถุประสงค์ของโปรแกรมคือ เพื่อลดการพกพาบัตรสมาชิกของลูกค้า ช่วยแก้ปัญหาในกรณีที่บัตรสมาชิกเกิดสูญหาย อย่างไรก็ตามฮาร์ดแวร์ดังกล่าวมีราคาค่อนข้างสูง
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=81mm]{stamp.png}
+\caption{ฮาร์ดแวร์ที่ใช้งานร่วมกับโปรแกรมประยุกต์แสตมป์} \label{fig:stamp}
+\label{overflow}
+\end{figure}
+
+\subsection{โปรแกรมประยุกต์กอตอิต}
+โปรแกรมประยุกต์กอตอิต เป็นโปรแกรมสำหรับสะสมแต้มที่ทำงานร่วมกับรหัสคิวอาร์ (QR Code) ซึ่งเป็นบาร์โค้ดสองมิติชนิดหนึ่ง ลูกค้าสามารถอ่านรหัสคิวอาร์ได้ด้วยเครื่องสแกนคิวอาร์ผ่านทางสมาร์ตโฟน ในการยืนยันสิทธิหรือสะสะแต้ม วัตถุประสงค์ของโปรแกรมคือ เพื่อลดการพกพาบัตรสมาชิกของลูกค้า ช่วยแก้ปัญหาในกรณีที่บัตรสมาชิกเกิดสูญหาย อย่างไรก็โปรแกรมดังกล่าวไม่สามารถอ่านรหัสคิวอาร์ในสภาวะที่มีแสงน้อย หรือได้ไม่ดีเท่าที่ควร เนื่องจากการอ่านรหัสคิวอาร์จำเป็นต้องอาศัยกล้องของสมาร์ตโฟนในการถ่ายภาพ
+%----------------------------------------------------------------------------------------
+
+\subsection{งานวิจัยที่เกี่ยวข้อง}
+การวิเคราะห์และออกแบบระบบต้นแบบสำหรับการรวบรวมบัตรสมาชิกบนสมาร์ตโฟนที่ผนวกเข้ากับเทคโนโลยีเอ็นเอฟซี ผู้ทำโครงงานได้ศึกษางานวิจัยที่เกี่ยวข้องเพื่อประกอบการทําโครงงานมหาบัณฑิต ดังนี้
+
+งานวิจัยของ Husni และคณะ \cite{itm:shopping} ได้นำเสนอระบบต้นแบบสำหรับการชอปปิ้ง (shopping) ในห้างสรรพสินค้าบนเทคโนโลยีเนียร์ฟิลด์คอมมูนิเคชันด้วยแอนดรอยด์แพลตฟอร์ม ผู้ใช้งานสามารถทำการชอปปิ้งโดยเลือกสินค้าที่ต้องการ และทำการแท็กกับสินค้าที่มีชิปประทับไปกับสินค้า โดยมีแอนดรอยด์สมาร์ตโฟนเป็นตัวอ่านข้อมูลและรายละเอียดของสินค้า ผู้ใช้งานสามารถทำการเพิ่ม ลบจำนวนของสินค้า หรือทำการลบสินค้าที่ไม่ต้องการได้ นอกจากนี้ผู้ใช้งานสามารถทำการยืนยันสินค้ากับผู้ขายเพื่อชำระสินค้า ซึ่งระบบจะตรวจสอบรหัสสำหรับการยืนยันตัวบุคคลด้วยรหัสลับบุคคล (Personal Identification Number: PIN) โดยใช้ระบบการแลกเปลี่ยนข้อมูลแบบเพียร์ทูเพียร์ และทำการบันทึกรายการสินค้า งานวิจัยนี้เน้นการส่งข้อมูลด้วยเทคโนโลยีเอ็นเอฟซีซึ่งสามารถรับส่งข้อมูลรายละเอียดของสินค้าแม้ในสภาวะออฟไลน์ได้
+
+งานวิจัยของ Mainetti และคณะ \cite{itm:IDA-Pay} ได้นำเสนอระบบต้นแบบสำหรับการชำระเงินที่มีความปลอดภัยบนเทคโนโลยีเนียร์ฟิลด์คอมมูนิเคชันด้วยแอนดรอยด์แพลตฟอร์ม ผู้ใช้งานสามารถชำระเงินผ่านทางสมาร์ตโฟนได้ โดยระบบจะทำการส่งข้อมูลเลขที่บัตรเครดิต วันที่หมดอายุของบัตร รหัสซีวีวี (CVV) ไปยังอุปกรณ์ขายหน้าร้าน (POS) ข้อมูลดังกล่าวจะถูกเข้ารหัสแบบกุญแจสาธารณะ (Public key) พร้อมกับยอดเงินที่ต้องชำระ และส่งต่อไปยังเกตเวย์ (Gateway) โดยเกตเวย์เป็นเว็บเซิร์ฟเวอร์ที่จะทำหน้าที่ถอดรหัส และส่งข้อมูลเกี่ยวกับการชำระเงินไปยังจุดให้บริการเครือข่ายบัตรเครดิตที่กำหนดไว้ (Credit Card Network Endpoint) เพื่อรับประกันความปลอดภัยของข้อมูล งานวิจัยนี้เน้นเรื่องการรักษาความปลอดภัยของข้อมูล ซึ่งผู้ใช้งานสามารถมั่นใจได้ว่าข้อมูลจะไม่ถูกขโมย
+
+%----------------------------------------------------------------------------------------
+
+\section{วิธีการดำเนินงานวิจัย}
+โครงงานมหาบัณฑิตนี้นําเสนอการออกแบบและวิเคราะห์ระบบสำหรับการรวบรวมบัตรสมาชิกบนเทคโนโลยีเอ็นเอฟซีด้วยแอนดรอยด์แพลตฟอร์ม ซึ่งมีรายละเอียดดังนี้
+
+\subsection{ออกแบบสถาปัตยกรรมของระบบ}
+การออกแบบสถาปัตยกรรมของระบบ เพื่อให้ระบบต้นแบบที่พัฒนาขึ้นสามารถนำกลับมาใช้ซ้ำได้ (reusability) และง่ายต่อการบำรุงรักษา (maintainability) ผู้วิจัยออกแบบโดยใช้สถาปัตยกรรมแบบ 3 เทียร์ (Three-tier architecture) ดังรูปที่ \ref{fig:three_tier} โดยแบ่งการทำงานเป็น 3 ส่วน ได้แก่ ส่วนของข้อมูล (Data tier) ส่วนการประมวลผล (Application tier) และส่วนการแสดงผล (Presentation tier) ซึ่งมีรายละเอียดดังนี้
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=81mm]{architecture.png}
+\caption{สถาปัตยกรรมของระบบสมาชิก} \label{fig:three_tier}
+\label{overflow}
+\end{figure}
+
+\begin{enumerate} 
+\item ส่วนของข้อมูล ประกอบไปด้วยเครื่องบริการฐานข้อมูลซึ่งทำหน้าที่ในการเก็บข้อมูลต่าง ๆ เช่น ข้อมูลสมาชิก ข้อมูลร้านค้า ซึ่งส่วนนี้จะเป็นอิสระกับส่วนการประมวลผล ช่วยเพิ่มความสามารถในการรองรับและต่อขยายระบบ (scalability) และการปรับปรุงสมรรถนะของระบบได้ (performance)
+
+\item ส่วนการประมวลผล ประกอบไปโปรแกรม 2 ส่วนคือ โปรแกรมในส่วนของลูกค้า และโปรแกรมในส่วนของร้านค้า ซึ่งติดตั้งในสมาร์ตโฟนที่ผนวกเข้ากับเทคโนโลยีเอ็นเอฟซี โปรแกรมในส่วนของลูกค้าจะเก็บข้อมูลสมาชิกที่จำเป็นไว้ในระบบฐานข้อมูลเอสคิวไลท์ เพื่อใช้สำหรับการแลกเปลี่ยนข้อมูลกับโปรแกรมทางร้านค้าเพื่อทำการยืนยันข้อมูลสมาชิก โปรแกรมในส่วนของร้านค้าจะเก็บรหัสแบบกุญแจสาธารณะของร้านค้าต่าง ๆ เพื่อไว้ในใช้การตรวจสอบข้อมูลสมาชิก
+
+\item ส่วนการแสดงผล ส่วนนี้เป็นส่วนบนสุดของโปรแกรม ทำหน้าที่ในการแสดงผลต่าง ๆ เช่นการแสดงหน้าจอในส่วนการยืนยันสมาชิก รายการร้านค้าที่ร่วมรายการ รายการข้อมูลที่ลูกค้าเป็นสมาชิกกับร้านค้า
+\end{enumerate}
+
+\subsection{วิเคราะห์และออกแบบระบบต้นแบบ}
+
+จากการศึกษาและวิเคราะห์ความต้องการของระบบต้นแบบสำหรับการรวบรวมบัตรสมาชิก ผู้ทำโครงงานได้เสนอระบบ 2 แบบดังนี้
+
+\subsubsection{ระบบสมาชิกแบบไคลเอนต์ เซิร์ฟเวอร์ (Client Server)}
+ระบบสมาชิกแบบไคลเอนต์ เซิร์ฟเวอร์ เป็นระบบที่ทำการแลกเปลี่ยนข้อมูลแบบเพียร์ทูเพียร์ระหว่างสมาร์ตโฟน เพื่อทำการยืนยันสมาชิกหรือสะสมแต้ม ข้อมูลสมาชิกจะถูกเก็บไว้ที่เซิร์ฟเวอร์ รูปที่ \ref{fig:p2p_mode_cloud} แสดงรูปรวมของระบบสมาชิกแบบไคลเอนต์ เซิร์ฟเวอร์ ข้อดีของระบบดังกล่าวคือ ระบบมีโปรแกรมประยุกต์ทั้งในส่วนของลูกค้าและร้านค้า ร้านค้าสามารถทราบสถานะการณ์การทำงานของระบบผ่านทางโปรแกรมในส่วนของร้านค้าได้ และในกรณีที่สมาร์ตโฟนเกิดสูญหาย ข้อมูลสมาชิกจะยังคงอยู่ ผู้ใช้งานสามารถนำสมาร์ตโฟนเครื่องใหม่มาทำการยืนยันเพื่อนำข้อมูลเดิมกลับมาได้ แต่ข้อเสียคือ ผู้ใช้งานจะต้องทำการต่ออินเทอร์เน็ตเพื่อส่งข้อมูลสมาชิกไปทำการบันทึกข้อมูลที่เซิร์ฟเวอร์
+
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=81mm]{p2p_mode_cloud.png}
+% \caption{ภาพรวมของระบบสมาชิก} \label{fig:p2p_mode_cloud}
+% \label{overflow}
+% \end{figure}
+
+\section{ผลการวิจัย}
+
+ข้อมูลสรุปการเปรียบเทียบคุณสมบัติของระบบระหว่างระบบสมาชิก กับ โปรแกรมประยุกต์แสตมป์ และโปรแกรมประยุกต์กอตอิต แสดงดังในตารางที่ \ref{tab:compare_feature}
+
+\begin{table}[ht!]
+\centering
+\resizebox{81mm}{!} {
+\begin{tabular}{ | l | c | c | c |}
+	\hline                        
+  	คุณสมบัติของระบบ / ระบบ            & ระบบสมาชิก & แสตมป์ & กอตอิต \\
+  	\hline 
+  	มีโปรแกรมทั้งในส่วนร้านค้าและลูกค้า 		& \cmark & \xmark & \xmark \\
+  	\hline
+  	มีการสำรองข้อมูลของสมาชิก				    & \cmark & \cmark & \cmark \\
+  	\hline
+  	สามารถทำงานออฟไลน์                 & \cmark & \cmark & \cmark \\
+  	\hline
+  	สามารถทำงานได้ดีในสภาวะที่แสงน้อย    & \cmark & \cmark & \xmark \\
+  	\hline
+\end{tabular}
+}
+\caption{เปรียบเทียบคุณสมบัติของระบบระหว่างระบบสมาชิก กับ โปรแกรมประยุกต์แสตมป์ และโปรแกรมประยุกต์กอตอิต}
+\label{tab:compare_feature}
+\end{table}
+
+\section{สรุปผลการวิจัย}
+
+\section{กิตติกรรมประกาศ}
+
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=81mm]{use_case.png}
+% \caption{แผนรูปยูสเคสของระบบสมาชิก} \label{fig:p2p_mode_cloud}
+% \label{overflow}
+% \end{figure}
+
+% \subsection{พัฒนาระบบต้นแบบ}
+% การพัฒนาระบบต้นแบบประกอบไปด้วย 3 ส่วนหลัก คือ โปรแกรมสำหรับลูกค้า โปรแกรมสำหรับร้านค้า และระบบเซิร์ฟเวอร์
+
+% \subsection{ทดสอบและตรวจสอบคุณรูปของระบบ}
+% การทดสอบระบบต้นแบบมีเป้าหมายเพื่อค้นหาข้อผิดพลาดที่มีอยู่ในโปรแกรม ตรวจสอบความถูกต้องของฟังก์ชันการทำงานของซอฟต์แวร์ (Verification) ตรวจสอบความถูกต้องของฟังก์ช้นการทํางานต่อความต้องการของผู้ใช้งาน (Validation) การทดสอบจะทำโดยการสร้างข้อมูลจำลองร้านค้าและข้อมูลของลูกค้า จากนั้นจะทำการส่งข้อมูลเพื่อทดสอบการสื่อสารระหว่างสมาร์ตโฟน ซึ่งจะนํามาเป็นผลสรุปการทดสอบระบบต้นแบบ
+
+
+% \section{ขอบเขตการดำเนินงาน}
+% \subsection{ระบบมีการแลกเปลี่ยนข้อมูลระหว่างสมาร์ตโฟนด้วยเทคโนโลยีเอ็นเอฟซีโดยแบบเพียร์ทูเพียร์}
+% \subsection{ระบบมีส่วนที่ติดต่อกับผู้ใช้งานในลักษณะที่เป็นกราฟิก (Graphic User Interface : GUI)}
+% \subsection{เครื่องมือที่ใช้ในการพัฒนาระบบ มีรายละเอียดดังต่อไปนี้}
+% \begin{enumerate}
+% 	\item แมคบุ๊คแอร์ (Macbook Air) บนระบบปฏิบัติการแมคโอเอสเท็น (Max OS X) เวอร์ชั่น 10.8.4 ขึ้นไป ซึ่งติดตั้ง
+% 	\begin{enumerate}
+% 		\item Android Developer Tools (ADT) : adt--bundle--mac--x86\textunderscore64--20130729.zip
+% 		\item Eclipse Platform Version: 4.2.1
+% 		\item Adobe Photoshop สำหรับออกแบบส่วนต่อประสานกับผู้ใช้งาน
+% 	\end{enumerate}
+%   	\item สมาร์ตโฟนรุ่น LG Nexus 4 บนระบบปฏิบัติการแอนดรอยด์เวอร์ชั่น 4.3 ขึ้นไป ซึ่งผนวกเข้ากับเทคโนโลยีเอ็นเอฟซี
+% \end{enumerate}
+\begin{thebibliography}{depth}
+
+\bibitem{itm:shopping} Husni, E.; Purwantoro, S., "Shopping application system with Near Field Communication (NFC) based on Android," System Engineering and Technology (ICSET), 2012 International Conference on , vol., no., pp.1,6, 11-12 Sept. 2012
+  
+\bibitem{itm:IDA-Pay} Mainetti, L.; Patrono, L.; Vergallo, R., "IDA-Pay: An innovative micro-payment system based on NFC technology for Android mobile devices," Software, Telecommunications and Computer Networks (SoftCOM), 2012 20th International Conference on , vol., no., pp.1,6, 11-13 Sept. 2012
+
+\bibitem{itm:rpp-mobile} Divyan M. Konidala, Made H. Dwijaksara, Kwangjo Kim, Dongman Lee, Daeyoung Kim, Byoungcheon Lee, and Soontae Kim, Resuscitating Privacy-Preserving Mobile Payment with Customer in Complete Control, Journal of Personal and Ubiquitous Computing (PUC). Vol.16, pp.643-654, 2012
+  
+\bibitem{itm:prp-rfid} L. Catarinucci, S. Tedesco, D. De Donno, L. Tarricone: "Platform-Robust Passive UHF RFID Tags: a Case-Study in Robotics," Progress In Electromagnetics Research C, Vol. 30, 27-39, 2012.
+  
+\bibitem{itm:cicc} International Standard ISO/IEC 14443-1-2-3-4, Identification cards - Contactless integrated circuit cards - Proximity cards, 2008-07-15, ISO/IEC 2008, Switzerland.
+
+\end{thebibliography}
+
+\end{document}  
